@@ -2,6 +2,7 @@ package com.cpb.aiapplication;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -165,6 +166,13 @@ public class RunActivity extends AppCompatActivity {
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }
+            }
+        });
+        historyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(RunActivity.this, HistoryActivity.class);
+                startActivity(intent);
             }
         });
     }
