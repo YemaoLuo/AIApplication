@@ -21,17 +21,28 @@
 
     <Button
         android:id="@+id/enterBtn"
-        android:layout_width="141dp"
-        android:layout_height="68dp"
+        android:layout_width="124dp"
+        android:layout_height="56dp"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="170dp"
         android:layout_marginEnd="161dp"
-        android:layout_marginBottom="257dp"
+        android:layout_marginBottom="140dp"
         android:text="Enter"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="452dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@mipmap/ic_launcher" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

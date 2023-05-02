@@ -76,11 +76,6 @@ public class RunActivity extends AppCompatActivity {
                         throw new Exception();
                     }
                 } catch (Exception e) {
-                    mVal.setText("");
-                    nVal.setText("");
-                    kVal.setText("");
-                    jVal.setText("");
-                    sVal.setText("");
                     resultView.setText(noticeText);
                     Toast.makeText(RunActivity.this, "Invalid Input", Toast.LENGTH_SHORT).show();
                     return;
@@ -154,9 +149,9 @@ public class RunActivity extends AppCompatActivity {
                     thread.interrupt();
                     flag = true;
                     progressBar.setProgress(0);
-                    Toast.makeText(RunActivity.this, "Thread killed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(RunActivity.this, "Thread killed", Toast.LENGTH_SHORT).show();
                 });
-                builder.setNegativeButton("No", (dialogInterface, i) -> Toast.makeText(RunActivity.this, "Cancelled", Toast.LENGTH_LONG).show());
+                builder.setNegativeButton("No", (dialogInterface, i) -> Toast.makeText(RunActivity.this, "Cancelled", Toast.LENGTH_SHORT).show());
                 AlertDialog dialog = builder.create();
                 dialog.show();
             }
