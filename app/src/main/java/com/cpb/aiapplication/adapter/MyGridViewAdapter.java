@@ -73,13 +73,20 @@ public class MyGridViewAdapter extends BaseAdapter {
         viewHolder.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean remove = dbHelper.remove(item);
-                if (remove) {
-                    mData.remove(position);
-                    notifyDataSetChanged();
-                } else {
-                    Toast.makeText(mContext, "DB Error", Toast.LENGTH_LONG).show();
-                }
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setTitle("Confirm");
+                builder.setMessage("Remove this history log?");
+                builder.setPositiveButton("Yes", (dialogInterface, i) -> {
+                    boolean flag = dbHelper.remove(item);
+                    if (flag) {
+                        Toast.makeText(mContext, "Done", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(mContext, "Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.setNegativeButton("No", (dialogInterface, i) -> Toast.makeText(mContext, "Cancelled", Toast.LENGTH_SHORT).show());
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         });
         return convertView;
