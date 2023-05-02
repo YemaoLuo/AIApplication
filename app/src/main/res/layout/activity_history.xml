@@ -8,15 +8,14 @@
 
     <Button
         android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="65dp"
+        android:layout_width="120dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="75dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginBottom="60dp"
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintEnd_toStartOf="@+id/removeAllBtn"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -29,4 +28,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/removeAllBtn"
+        android:layout_width="120dp"
+        android:layout_height="52dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="60dp"
+        android:text="Remove All"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
