@@ -160,12 +160,11 @@
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="317dp"
-        android:layout_height="194dp"
+        android:layout_height="0dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginBottom="68dp"
-        android:background="#FFFFFF"
+        android:layout_marginBottom="45dp"
         app:layout_constraintBottom_toTopOf="@+id/runBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -173,7 +172,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
@@ -204,4 +203,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class RunActivity extends AppCompatActivity {
 
-    private boolean flag = true;
+    private boolean flag;
 
     private Thread thread;
 
@@ -50,11 +50,19 @@ public class RunActivity extends AppCompatActivity {
         jVal = findViewById(R.id.jVal);
         sVal = findViewById(R.id.sVal);
         resultView = findViewById(R.id.resultView);
+        String noticeText = "m is within the range of [45, 54]\n" +
+                "n is within the range of [7, 25]\n" +
+                "k is within the range of [4, 7]\n" +
+                "s is within the range of [3, 7]\n" +
+                "j is between the minimum value of s and k.";
+        resultView.setText(noticeText);
         progressBar = findViewById(R.id.progressBar);
+        flag = true;
         sh = new SolutionHelper();
         runBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resultView.setText("Starting...Please Wait...");
                 if (flag) {
                     progressBar.setProgress(0);
                     int m, n, k, j, s;
@@ -73,16 +81,11 @@ public class RunActivity extends AppCompatActivity {
                         kVal.setText("");
                         jVal.setText("");
                         sVal.setText("");
+                        resultView.setText(noticeText);
                         Toast.makeText(RunActivity.this, "Invalid Input", Toast.LENGTH_SHORT).show();
                         return;
                     }
                     Log.d("RunActivity", "m: " + m + " n: " + n + " k: " + k + " j: " + j + " s: " + s);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            resultView.setText("Starting...Please Wait...");
-                        }
-                    });
                     thread = new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -101,6 +104,8 @@ public class RunActivity extends AppCompatActivity {
                                     possibleResults.remove(candidateResult);
                                     double percent = (1 - coverList.size() / initSize) * 100;
                                     progressBar.setProgress((int) percent);
+                                    String showProgress = "Progress: " + (int) percent + "%";
+                                    resultView.setText(showProgress);
                                     Log.d("RunActivity", "Progress: " + percent);
                                 }
                             } else {
@@ -111,6 +116,9 @@ public class RunActivity extends AppCompatActivity {
                                     possibleResults.remove(candidateResult);
                                     double percent = (1 - coverList.size() / initSize) * 100;
                                     progressBar.setProgress((int) percent);
+                                    String showProgress = "Progress: " + (int) percent + "%";
+                                    resultView.setText(showProgress);
+                                    Log.d("RunActivity", "Progress: " + percent);
                                 }
                             }
 
