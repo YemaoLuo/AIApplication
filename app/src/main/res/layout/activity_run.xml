@@ -155,14 +155,18 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
-        android:layout_width="337dp"
-        android:layout_height="166dp"
+        android:id="@+id/scrollView2"
+        android:layout_width="317dp"
+        android:layout_height="194dp"
         android:layout_marginStart="70dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="100dp"
+        android:background="#EDEDED"
         app:layout_constraintBottom_toTopOf="@+id/runBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sVal">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -172,8 +176,18 @@
             <TextView
                 android:id="@+id/resultView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="Result:" />
+                android:layout_height="match_parent" />
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="37dp"
+        android:layout_marginEnd="331dp"
+        android:text="Result:"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
