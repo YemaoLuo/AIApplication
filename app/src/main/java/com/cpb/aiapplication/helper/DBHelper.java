@@ -144,7 +144,7 @@ public class DBHelper extends SQLiteOpenHelper {
                     null,
                     null
             );
-            if (cursor.moveToFirst()) {
+            while (cursor.moveToNext()) {
                 count = Math.max(count, Integer.parseInt(cursor.getString(0).split("-")[5]));
             }
             cursor.close();
