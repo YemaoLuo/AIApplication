@@ -7,7 +7,8 @@
         android:layout_width="411dp"
         android:layout_height="67dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:textAlignment="center">
 
         <TextView
             android:id="@+id/content_textview"
@@ -22,14 +23,15 @@
             android:id="@+id/checkBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="100px"
-            android:text="Check"
+            android:layout_marginEnd="50px"
+            android:text="Detail"
             android:textSize="12sp" />
 
         <Button
             android:id="@+id/removeBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="50dp"
             android:text="Remove"
             android:textSize="12sp" />
 
