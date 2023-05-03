@@ -146,10 +146,12 @@ public class RunActivity extends AppCompatActivity {
                 builder.setTitle("Confirm");
                 builder.setMessage("A thread is running. Want to kill it?");
                 builder.setPositiveButton("Yes", (dialogInterface, i) -> {
-                    thread.interrupt();
-                    flag = true;
-                    progressBar.setProgress(0);
-                    Toast.makeText(RunActivity.this, "Thread killed", Toast.LENGTH_SHORT).show();
+                    Intent intent = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    startActivity(intent);
+                    System.exit(0);
                 });
                 builder.setNegativeButton("No", (dialogInterface, i) -> Toast.makeText(RunActivity.this, "Cancelled", Toast.LENGTH_SHORT).show());
                 AlertDialog dialog = builder.create();
