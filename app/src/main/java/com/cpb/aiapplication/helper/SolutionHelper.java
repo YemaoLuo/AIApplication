@@ -1,6 +1,12 @@
 package com.cpb.aiapplication.helper;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -85,23 +91,25 @@ public class SolutionHelper {
 
 
     // Generate results using hill-climbing method
-    public List<Integer> getCandidateResult(List<List<Integer>> possibleResults, List<Set<Integer>> coverList, int s) {
+    public List<Integer> getCandidateResult(List<Integer> candidateResult, List<List<Integer>> possibleResults, List<Set<Integer>> coverList, int s) {
         ConcurrentHashMap<List<Integer>, Integer> map = new ConcurrentHashMap<>();
-        possibleResults.parallelStream().unordered().forEach((possibleResult -> {
-            LongAdder tempMax = new LongAdder();
-            coverList.parallelStream().unordered().forEach(coverSet -> {
-                int count = 0;
-                for (Integer integer : possibleResult) {
-                    if (coverSet.contains(integer)) {
-                        count++;
-                    }
-                }
-                if (count >= s) {
-                    tempMax.increment();
-                }
-            });
-            map.put(possibleResult, tempMax.intValue());
-        }));
+        possibleResults.parallelStream().unordered()
+                .filter(possibleResult -> !possibleResult.get(0).equals(candidateResult.get(0)))
+                .forEach((possibleResult -> {
+                    LongAdder tempMax = new LongAdder();
+                    coverList.parallelStream().unordered().forEach(coverSet -> {
+                        int count = 0;
+                        for (Integer integer : possibleResult) {
+                            if (coverSet.contains(integer)) {
+                                count++;
+                            }
+                        }
+                        if (count >= s) {
+                            tempMax.increment();
+                        }
+                    });
+                    map.put(possibleResult, tempMax.intValue());
+                }));
         return map.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getKey)
@@ -146,17 +154,5 @@ public class SolutionHelper {
                 iterator.remove();
             }
         }
-    }
-
-    public List<List<Integer>> getResult(List<List<Integer>> possibleResults, List<Set<Integer>> coverList, int s) {
-        List<List<Integer>> result = new ArrayList<>();
-        double initSize = coverList.size();
-        while (coverList.size() != 0) {
-            System.out.println(String.format("%.2f", (1 - coverList.size() / initSize) * 100) + "%");
-            List<Integer> candidateResult = getCandidateResult(possibleResults, coverList, s);
-            removeCoveredResults(candidateResult, coverList, s);
-            result.add(candidateResult);
-        }
-        return result;
     }
 }

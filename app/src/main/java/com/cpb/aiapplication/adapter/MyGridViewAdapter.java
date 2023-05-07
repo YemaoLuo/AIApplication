@@ -2,6 +2,7 @@ package com.cpb.aiapplication.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cpb.aiapplication.R;
+import com.cpb.aiapplication.RunActivity;
 import com.cpb.aiapplication.helper.DBHelper;
 
 import java.util.List;
@@ -80,6 +82,9 @@ public class MyGridViewAdapter extends BaseAdapter {
                     boolean flag = dbHelper.remove(item);
                     if (flag) {
                         Toast.makeText(mContext, "Done", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(mContext, RunActivity.class);
+                        intent.putExtra("flag", "true");
+                        mContext.startActivity(intent);
                     } else {
                         Toast.makeText(mContext, "Failed", Toast.LENGTH_SHORT).show();
                     }

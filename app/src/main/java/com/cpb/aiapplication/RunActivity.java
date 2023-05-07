@@ -102,8 +102,10 @@ public class RunActivity extends AppCompatActivity {
                             Log.d("RunActivity", "Progress: " + percent);
                         }
                     } else {
+                        List<Integer> candidateResult = new ArrayList<>();
+                        candidateResult.add(-1);
                         while (!coverList.isEmpty()) {
-                            List<Integer> candidateResult = sh.getCandidateResult(possibleResults, coverList, s);
+                            candidateResult = sh.getCandidateResult(candidateResult, possibleResults, coverList, s);
                             result.add(candidateResult);
                             sh.removeCoveredResults(candidateResult, coverList, s);
                             possibleResults.remove(candidateResult);
@@ -163,5 +165,10 @@ public class RunActivity extends AppCompatActivity {
             Intent intent = new Intent(RunActivity.this, HistoryActivity.class);
             startActivity(intent);
         });
+        Intent flagIntent = getIntent();
+        String data = flagIntent.getStringExtra("flag");
+        if (data != null && data.equals("true")) {
+            historyBtn.performClick();
+        }
     }
 }
