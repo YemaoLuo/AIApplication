@@ -7,6 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".RunActivity">
 
+    <EditText
+        android:id="@+id/chosenSamplesVal"
+        android:layout_width="145dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="64dp"
+        android:ems="10"
+        android:inputType="numberSigned"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sVal" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="38dp"
+        android:text="Chosen samples:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -126,50 +148,46 @@
         android:id="@+id/runBtn"
         android:layout_width="139dp"
         android:layout_height="43dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="48dp"
         android:text="Start/End"
         android:textColorHighlight="#9C27B0"
         android:textColorLink="#9C27B0"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/historyBtn"
         android:layout_width="139dp"
         android:layout_height="43dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginEnd="160dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="48dp"
         android:text="History"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/scrollView2"
-        android:layout_width="317dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="25dp"
         app:layout_constraintBottom_toTopOf="@+id/runBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sVal">
+        app:layout_constraintTop_toBottomOf="@+id/chosenSamplesVal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/resultView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </ScrollView>
 

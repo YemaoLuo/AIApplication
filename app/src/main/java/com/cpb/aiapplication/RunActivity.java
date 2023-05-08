@@ -32,6 +32,7 @@ public class RunActivity extends AppCompatActivity {
     private TextView kVal;
     private TextView jVal;
     private TextView sVal;
+    private TextView chosenSamplesVal;
     private TextView resultView;
 
     private ProgressBar progressBar;
@@ -50,6 +51,7 @@ public class RunActivity extends AppCompatActivity {
         kVal = findViewById(R.id.kVal);
         jVal = findViewById(R.id.jVal);
         sVal = findViewById(R.id.sVal);
+        chosenSamplesVal = findViewById(R.id.chosenSamplesVal);
         resultView = findViewById(R.id.resultView);
         String noticeText = "m is within the range of [45, 54]\n" +
                 "n is within the range of [7, 25]\n" +
@@ -84,7 +86,21 @@ public class RunActivity extends AppCompatActivity {
                 thread = new Thread(() -> {
                     long startTime = System.currentTimeMillis();
                     List<List<Integer>> result = new ArrayList<>();
-                    List<Integer> chosenSamples = sh.generateChosenSamples(m, n);
+                    List<Integer> chosenSamples;
+                    if (chosenSamplesVal.getText().length() == 0) {
+                        chosenSamples = sh.generateChosenSamples(m, n);
+                        chosenSamplesVal.setText(chosenSamples.toString().substring(1, chosenSamples.toString().length() - 1));
+                    } else {
+                        chosenSamples = new ArrayList<>();
+                        String[] chosenSamplesStr = chosenSamplesVal.getText().toString().split(",");
+                        for (String str : chosenSamplesStr) {
+                            chosenSamples.add(Integer.parseInt(str.trim()));
+                        }
+                        if (chosenSamples.size() != n) {
+                            chosenSamples = new ArrayList<>(sh.generateChosenSamples(m, n));
+                            chosenSamplesVal.setText(chosenSamples.toString().substring(1, chosenSamples.toString().length() - 1));
+                        }
+                    }
                     List<List<Integer>> possibleResults = sh.generatePossibleResults(chosenSamples, k);
                     List<Set<Integer>> coverList = sh.generateCoverList(chosenSamples, j);
 
@@ -168,6 +184,7 @@ public class RunActivity extends AppCompatActivity {
         Intent flagIntent = getIntent();
         String data = flagIntent.getStringExtra("flag");
         if (data != null && data.equals("true")) {
+            flagIntent.removeExtra("flag");
             historyBtn.performClick();
         }
     }
