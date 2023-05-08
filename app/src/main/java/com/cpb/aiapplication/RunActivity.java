@@ -16,7 +16,6 @@ import com.cpb.aiapplication.helper.SolutionHelper;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class RunActivity extends AppCompatActivity {
 
@@ -102,7 +101,7 @@ public class RunActivity extends AppCompatActivity {
                         }
                     }
                     List<List<Integer>> possibleResults = sh.generatePossibleResults(chosenSamples, k);
-                    List<Set<Integer>> coverList = sh.generateCoverList(chosenSamples, j);
+                    List<List<Integer>> coverList = sh.generateCoverList(chosenSamples, j);
 
                     double initSize = coverList.size();
                     if (n <= 12) {
@@ -118,8 +117,9 @@ public class RunActivity extends AppCompatActivity {
                             Log.d("RunActivity", "Progress: " + percent);
                         }
                     } else {
-                        List<Integer> candidateResult = new ArrayList<>();
-                        candidateResult.add(-1);
+                        List<Integer> candidateResult = possibleResults.get(0);
+                        result.add(candidateResult);
+                        sh.removeCoveredResults(candidateResult, coverList, s);
                         while (!coverList.isEmpty()) {
                             candidateResult = sh.getCandidateResult(candidateResult, possibleResults, coverList, s);
                             result.add(candidateResult);
